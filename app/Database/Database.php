@@ -3,28 +3,6 @@ namespace DATABASE;
 
 use PDO;
 
-class Database
-{
-    private static function getDB(){
-        return new PDO("mysql:host=" . configs_db_host . ";dbname=" . configs_db_name . ";charset=utf8", configs_db_username, configs_db_password);
-    }
-
-    public static function table($tableName)
-    {
-        return Database::getDB()->prepare("select * from " . $tableName);
-    }
-
-    public static function sql($sql){
-        return Database::getDB()->prepare($sql);
-    }
-
-    public static function dbs(){
-        return Database::getDB();
-    }
-
-
-}
-
 class FFDatabase
 {
     public $instance = FFDatabase::class;

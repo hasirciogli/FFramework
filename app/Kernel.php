@@ -10,7 +10,7 @@ require $_SERVER["DOCUMENT_ROOT"] . "/app/FFunctions/FrameworkFunctions.php";
 require $_SERVER["DOCUMENT_ROOT"] . "/app/FFunctions/DataLogger.php";
 
 
-require $_SERVER["DOCUMENT_ROOT"] . "/app/Database/Database.php";
+//require $_SERVER["DOCUMENT_ROOT"] . "/app/Database/Database.php";
 
 require $_SERVER["DOCUMENT_ROOT"] . "/app/Models/SessionModel.php";
 require $_SERVER["DOCUMENT_ROOT"] . "/app/Models/AuthModel.php";

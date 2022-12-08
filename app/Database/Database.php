@@ -3,6 +3,31 @@ namespace DATABASE;
 
 use PDO;
 
+use DataLogger\DataLogger;
+use DataLogger\DATALOGGER_LOG_TYPE;
+
+class Database
+{
+    private static function getDB(){
+        return new PDO("mysql:host=" . configs_db_host . ";dbname=" . configs_db_name . ";charset=utf8", configs_db_username, configs_db_password);
+    }
+
+    public static function table($tableName)
+    {
+        return Database::getDB()->prepare("select * from " . $tableName);
+    }
+
+    public static function sql($sql){
+        return Database::getDB()->prepare($sql);
+    }
+
+    public static function dbs(){
+        return Database::getDB();
+    }
+
+
+}
+
 class FFDatabase
 {
     public $instance = FFDatabase::class;
@@ -48,6 +73,30 @@ class FFDatabase
 
     public function select($table){
         $this->buildedSQL .= "SELECT * FROM " . $table;
+
+        return $this;
+    }
+
+    public function limit($limit){
+        $this->buildedSQL .= " LIMIT " . $limit;
+
+        return $this;
+    }
+
+    public function orderby($by){
+        $this->buildedSQL .= " ORDER BY " . $by;
+
+        return $this;
+    }
+
+    public function ASC(){
+        $this->buildedSQL .= " ASC";
+
+        return $this;
+    }
+
+    public function DESC(){
+        $this->buildedSQL .= " DESC";
 
         return $this;
     }
@@ -109,7 +158,7 @@ class FFDatabase
         return $this;
     }
 
-    public function get(){
+    public function get() : null|string|array {
         if ($this->x){
             $this->result = $this->v->fetch(PDO::FETCH_ASSOC);
             if ($this->v->rowCount() > 0){
@@ -124,7 +173,7 @@ class FFDatabase
         }
     }
 
-    public function getAll(){
+    public function getAll() : null|string|array {
         if ($this->x){
             $this->result = $this->v->fetchAll(PDO::FETCH_ASSOC);
             if ($this->v->rowCount() > 0){
@@ -139,7 +188,7 @@ class FFDatabase
         }
     }
 
-    public function run(){
+    public function run() {
         $this->BuildSQL();
 
         $this->v = $this->connection->prepare($this->buildedSQL);

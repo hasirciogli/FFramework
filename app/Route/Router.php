@@ -24,7 +24,19 @@ class Router
     }
 
     public static function AnalyzeMiddlewareUri(){
-        return explode("/", substr($_SERVER["REQUEST_URI"],1,strlen($_SERVER["REQUEST_URI"])));
+        $req_uri = $_SERVER["REQUEST_URI"];
+        $splited_str = str_split($req_uri);
+        $base_uri = "";
+
+        foreach ($splited_str as $echar){
+            if ($echar == "?"){
+                break;
+            }else {
+                $base_uri .= $echar;
+            }
+        }
+
+        return explode("/", substr($base_uri,1,strlen($base_uri)));
     }
 
     public static function Get($zName, $correctCallback){
@@ -64,7 +76,7 @@ class Router
     }
 
     public static function Route($link){
-        header("Location: " . $link);
+        header("Location: " . configs_host_ssl . "://" . configs_host_domain . "/" . $link);
     }
 
     public static function CheckIfIsApi($prefix){

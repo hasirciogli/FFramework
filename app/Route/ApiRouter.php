@@ -1,6 +1,10 @@
 <?php
 
 namespace ApiRouter;
+use GatesController\GatesController;
+use http\Client\Response;
+use PaymentRequsetsController\PaymentRequsetsController;
+use ResponseBankController\ResponseBankController;
 use RestApiController\RestApiController;
 use UserController\UserController;
 use WebsitesController\WebsitesController;
@@ -61,7 +65,15 @@ class ApiRouter
 
         });
 
-        ApiRouter::middleware("websites", WebsitesController::class, function (){
+        ApiRouter::middleware("payment", PaymentRequsetsController::class, function (){
+
+        });
+
+        ApiRouter::middleware("gates", GatesController::class, function (){
+
+        });
+
+        ApiRouter::middleware("payment_back", ResponseBankController::class, function (){
 
         });
 

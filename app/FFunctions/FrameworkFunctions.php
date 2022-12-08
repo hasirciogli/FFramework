@@ -3,7 +3,6 @@
 namespace FrameworkFunctions;
 
 use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
 enum randomstringtypes{
@@ -15,12 +14,12 @@ enum randomstringtypes{
 
 class FrameworkFunctions
 {
-    public function getCustomHeader($header){
-        return isset(getallheaders()[$header]) ? getallheaders()[$header] : false;
+    public function getCustomHeader($header) : string{
+        return isset(getallheaders()[$header]) ?? false;
     }
 
 
-    public function getRandomString($length , array $type = null)
+    public function getRandomString($length , array $type = null) : string
     {
         $characters = "";
         if($type != null && count($type) > 0){
@@ -56,7 +55,7 @@ class FrameworkFunctions
         return $randstring;
     }
 
-    public function SendMail($to, $title, $body, $footer) {
+    public function SendMail($to, $title, $body, $footer) : bool {
 
         $mail = new PHPMailer(false);
 

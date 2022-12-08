@@ -1,4 +1,244 @@
+@import url("https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/5.3.45/css/materialdesignicons.min.css");
+
 html, body{
     padding: 0;
     margin: 0;
+}
+
+.drop-down-outline > a:first-child > span > i{
+    transition: 0.3s;
+}
+
+.drop-down-outline:hover > a:first-child > span > i{
+    transform: rotate(180deg);
+}
+
+
+
+.drop-down-item:first-child{
+    min-height: 50px;
+    max-height: 50px;
+
+    background-color: transparent;
+}
+
+.drop-down-item{
+    min-height: 40px;
+    max-height: 40px;
+}
+
+
+/* width */
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #c2c2c2;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    transition: 0.3s;
+    background: #141e36;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #2756c9;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.animason-yuvarlan{
+    animation-name: sallan_animasyon;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+    animation-fill-mode: forwards;
+}
+
+@keyframes sallan_animasyon {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    25% {
+        transform: rotate(-5deg);
+    }
+
+    50% {
+        transform: rotate(5deg);
+    }
+
+
+    75% {
+        transform: rotate(-5deg);
+    }
+
+    100% {
+        transform: rotate(0deg);
+    }
+}
+
+
+
+
+
+
+
+
+/* payment page css start */
+
+.form-radio {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    -webkit-print-color-adjust: exact;
+    color-adjust: exact;
+    display: inline-block;
+    vertical-align: middle;
+    background-origin: border-box;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    flex-shrink: 0;
+    border-radius: 100%;
+    border-width: 2px;
+}
+
+.form-radio:checked {
+    background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg'%3e%3ccircle cx='8' cy='8' r='3'/%3e%3c/svg%3e");
+    border-color: transparent;
+    background-color: currentColor;
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+@media not print {
+    .form-radio::-ms-check {
+        border-width: 1px;
+        color: transparent;
+        background: inherit;
+        border-color: inherit;
+        border-radius: inherit;
+    }
+}
+
+.form-radio:focus {
+    outline: none;
+}
+
+.form-select {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23a0aec0'%3e%3cpath d='M15.3 9.3a1 1 0 0 1 1.4 1.4l-4 4a1 1 0 0 1-1.4 0l-4-4a1 1 0 0 1 1.4-1.4l3.3 3.29 3.3-3.3z'/%3e%3c/svg%3e");
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    -webkit-print-color-adjust: exact;
+    color-adjust: exact;
+    background-repeat: no-repeat;
+    padding-top: 0.5rem;
+    padding-right: 2.5rem;
+    padding-bottom: 0.5rem;
+    padding-left: 0.75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    background-position: right 0.5rem center;
+    background-size: 1.5em 1.5em;
+}
+
+.form-select::-ms-expand {
+    color: #a0aec0;
+    border: none;
+}
+
+@media not print {
+    .form-select::-ms-expand {
+        display: none;
+    }
+}
+
+@media print and (-ms-high-contrast: active), print and (-ms-high-contrast: none) {
+    .form-select {
+        padding-right: 0.75rem;
+    }
+}
+
+/* payment page css end */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.paging {
+    display: flex;
+    justify-content: space-between;
+}
+.paging__btn {
+    align-items: center;
+    background: #fff;
+    border: 1px solid #f4f4f4;
+    border-radius: 6px;
+    color: #000000;
+    cursor: pointer;
+    display: flex;
+    font-weight: 700;
+    height: 44px;
+    outline: 0;
+    justify-content: center;
+    padding: 0;
+    transition: all 0.2s ease-in;
+    width: 44px;
+}
+.paging__btn:hover {
+    text-decoration: none;
+}
+.paging__btn:not(.paging__btn--disabled):hover {
+    background: #ef4358;
+    color: #fff;
+}
+.paging__btn:focus {
+    outline: 0;
+}
+.paging__btn--disabled {
+    color: #939393;
+    cursor: default;
+}
+.paging__btn--passed {
+    color: #cccccc;
+}
+.paging__btn--current {
+    color: #ef4358;
 }

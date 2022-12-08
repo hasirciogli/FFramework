@@ -21,6 +21,6 @@ class ErrorHandler
         $_SESSION["FRAMEWORD_ERROR_VIEW_ERRCONTEXT"]    = $context;
         $_SESSION["FRAMEWORD_ERROR_VIEW_ERRBACKLINK"]    = $_SERVER["REQUEST_URI"];
 
-        header("Location: /debug_display_errors");
+        header("Location: " . configs_host_ssl . "://" . configs_host_domain . "/debug_display_errors");
     }
 }

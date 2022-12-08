@@ -1,7 +1,9 @@
 <?php
 
+use Router\Router;
+
 if ((isset($_SESSION["FRAMEWORD_ERROR_VIEW_STATUS"]) ? $_SESSION["FRAMEWORD_ERROR_VIEW_STATUS"] : false) == false) {
-    header("Location: /");
+    Router::Route("");
 }
 
 ?>

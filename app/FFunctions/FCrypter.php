@@ -5,8 +5,8 @@ namespace FCrypter;
 
 class FCrypter
 {
-    private $cipher = "ENCRYPT-CHIPER-METHO-EXAMPLE('aes128')";
-    private $passSalt = "PASSWORD-SALT";
+    private $cipher = "";
+    private $passSalt = "";
 
     public function getEncrypt($data){
 

@@ -5,35 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="43fdb6c7-0fef-427e-8285-27672cfedf18" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.htaccess" beforeDir="false" afterPath="$PROJECT_DIR$/.htaccess" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api/api.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api/internal_funcs/PluginBaseController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api/vfuns/userController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/.gitattributes" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/.idea/htdocs.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/.idea/php.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/Config.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/Database.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/LICENSE" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/api/.htaccess" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/api/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/api.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/api/internal_funcs/PluginBaseController.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/internal_funcs/PluginBaseController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/api/vfuns/userController.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/vfuns/userController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/index.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Controllers/OwnerController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Controllers/OwnerController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Controllers/RestApiController.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Controllers/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Controllers/UserController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Database/Database.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Database/Database.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Kernel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Kernel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/AuthModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/AuthModel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/RestApiModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/RestApiModel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/SessionModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/SessionModel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/UserModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/UserModel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Route/Router.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Route/Router.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,7 +36,7 @@
     </include_path>
   </component>
   <component name="ProjectId" id="2LQCjasoQAJjqdiagMWO3ZkSfo0" />
-  <component name="ProjectLevelVcsManager">
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="ProjectViewState">
@@ -73,7 +49,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "X:/xampp/htdocs/storage/fonts",
+    "last_opened_file_path": "X:/xampp/htdocs/app/api",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -84,9 +60,11 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="X:\xampp\htdocs\app\api" />
       <recent name="X:\xampp\htdocs\storage\fonts" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="X:\xampp\htdocs" />
       <recent name="X:\xampp\htdocs\api" />
     </key>
   </component>
@@ -101,7 +79,7 @@
       <workItem from="1675794060305" duration="2289000" />
       <workItem from="1675912551922" duration="863000" />
       <workItem from="1675985834293" duration="5173000" />
-      <workItem from="1675992696116" duration="13309000" />
+      <workItem from="1675992696116" duration="13697000" />
     </task>
     <servers />
   </component>
@@ -121,6 +99,9 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <ignored-roots>
+      <path value="$PROJECT_DIR$/api" />
+    </ignored-roots>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

@@ -1,9 +1,10 @@
 <?php
 
 namespace AuthModel;
-use DATABASE\Database;
 
-class AuthModel extends Database
+use DATABASE\FFDatabase;
+
+class AuthModel extends FFDatabase
 {
 
 }

@@ -2,18 +2,14 @@
 
 namespace RestApiModel;
 
-use DATABASE\Database;
 use DATABASE\FFDatabase;
 use DataLogger\DataLogger;
 use DataLogger\DATALOGGER_LOG_TYPE;
 use FrameworkFunctions\FrameworkFunctions;
-use GatesController\GatesController;
-use PaymentRequsetsController\PaymentRequsetsController;
-USE PDO;
-use ResponseBankController\ResponseBankController;
+use PDO;
 use Router\Router;
 
-class RestApiModel extends \DATABASE\Database
+class RestApiModel extends FFDatabase
 {
     static function getDomainFromUrl($url)
     {
@@ -26,10 +22,11 @@ class RestApiModel extends \DATABASE\Database
     }
 
 
-    static function sendParamDie($error, array $paramters, $error_desc, $class){
+    static function sendParamDie($error, array $paramters, $error_desc, $class)
+    {
         die(json_encode([
             "action" => false,
-            "data"=> [
+            "data" => [
                 "error" => $error,
                 "error-description" => $error_desc,
                 "class" => $class,
@@ -37,34 +34,40 @@ class RestApiModel extends \DATABASE\Database
                 "your-ip-adress-recorded" => $_SERVER["REMOTE_ADDR"],
                 "ip-address-info" => "Dont worry. This is our security process. Just trust us :) ",
             ]
-        ],JSON_UNESCAPED_UNICODE));
+        ], JSON_UNESCAPED_UNICODE));
     }
-    static function sendErrDie($error, $error_desc, $class){
+
+    static function sendErrDie($error, $error_desc, $class)
+    {
         die(json_encode([
             "action" => false,
-            "data"=> [
+            "data" => [
                 "error" => $error,
                 "error-description" => $error_desc,
                 "class" => $class,
                 "your-ip-adress-recorded" => $_SERVER["REMOTE_ADDR"],
                 "ip-address-info" => "Dont worry. This is our security process. Just trust us :) ",
             ]
-        ],JSON_UNESCAPED_UNICODE));
+        ], JSON_UNESCAPED_UNICODE));
     }
-    static function sendCreateErr(){
+
+    static function sendCreateErr()
+    {
         die(json_encode([
             "action" => false,
-            "data"=> [
+            "data" => [
                 "error" => "payment-create-error",
                 "error-description" => "Playment create failed please try again",
                 "class" => $_SERVER["REQUEST_URI"],
                 "your-ip-adress-recorded" => $_SERVER["REMOTE_ADDR"],
                 "ip-address-info" => "Dont worry. This is our security process. Just trust us :) ",
             ]
-        ],JSON_UNESCAPED_UNICODE));
+        ], JSON_UNESCAPED_UNICODE));
     }
-    static function checkApiKeys(){
-        $api_key    = FrameworkFunctions::get()->getCustomHeader("api-key");
+
+    static function checkApiKeys()
+    {
+        $api_key = FrameworkFunctions::get()->getCustomHeader("api-key");
         $api_secret = FrameworkFunctions::get()->getCustomHeader("api-secret");
 
         if (!$api_key || !$api_secret)
@@ -74,37 +77,45 @@ class RestApiModel extends \DATABASE\Database
         $x = $v->execute([$api_key, $api_secret]);
         $user = $v->fetch(PDO::FETCH_ASSOC);
 
-        if ($v->rowCount() > 0 && $x){
+        if ($v->rowCount() > 0 && $x) {
             return $user;
         }
         return false;
     }
-    static function checkPostParams(array $params){
-        foreach($params as $item){
-            if(!isset($_POST[$item]) || $_POST[$item] == null || $_POST[$item] == ""){
+
+    static function checkPostParams(array $params)
+    {
+        foreach ($params as $item) {
+            if (!isset($_POST[$item]) || $_POST[$item] == null || $_POST[$item] == "") {
                 return false;
                 break;
             }
         }
         return true;
     }
-    static function checkPostParam($param, $check_var_type = null){
-        if(!isset($_POST[$param]) || $_POST[$param] == null || $_POST[$param] == "")
+
+    static function checkPostParam($param, $check_var_type = null)
+    {
+        if (!isset($_POST[$param]) || $_POST[$param] == null || $_POST[$param] == "")
             return false;
 
         return true;
     }
-    static function checkGetParam($param, $check_var_type = null){
-        if(!isset($_GET[$param]) || $_GET[$param] == null || $_GET[$param] == "")
+
+    static function checkGetParam($param, $check_var_type = null)
+    {
+        if (!isset($_GET[$param]) || $_GET[$param] == null || $_GET[$param] == "")
             return false;
 
         return true;
     }
-    static function checkHost($param_domain){
-        $param_domain_addr  = gethostbyname($param_domain);
-        $request_addr       = $_SERVER["REMOTE_ADDR"];
 
-        if($request_addr != $param_domain_addr){
+    static function checkHost($param_domain)
+    {
+        $param_domain_addr = gethostbyname($param_domain);
+        $request_addr = $_SERVER["REMOTE_ADDR"];
+
+        if ($request_addr != $param_domain_addr) {
             RestApiModel::sendErrDie("invalid-host", "Please send any requst to your confirmed or active website('s)", $_SERVER["REQUEST_URI"]);
             return false;
         }
@@ -113,28 +124,20 @@ class RestApiModel extends \DATABASE\Database
         $x = $v->execute([$param_domain]);
         $result = $v->fetch(PDO::FETCH_ASSOC);
 
-        if ($v->rowCount() > 0 && $x){
+        if ($v->rowCount() > 0 && $x) {
             return $result;
-        }
-        else{
+        } else {
             RestApiModel::sendErrDie("website-not-found", "Website not registered our server's", $_SERVER["REQUEST_URI"]);
             return false;
         }
     }
-    static function FinishPayWithError($err){
+
+    static function FinishPayWithError($err)
+    {
         Router::Route("");
         die();
         //echo "ERROR -> " . $err;
     }
-
-
-
-
-
-
-
-
-
 
 
 }

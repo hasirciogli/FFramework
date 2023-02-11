@@ -26,7 +26,6 @@ class ApiRouter
 
     public function run($uri)
     {
-
         function makeResponse($res_code, $res_text, $status, $data) // Easy response function, call if you want 
         {
             header("Content-Type: application/json");

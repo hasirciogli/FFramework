@@ -1,4 +1,7 @@
 <?php
+
+error_reporting(0);
+
 //die(var_dump($_SERVER));
 //die (phpinfo());
 $cfg_way = "./../app/Configs/Config.php";

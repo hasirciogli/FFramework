@@ -9,8 +9,8 @@ define("configs_site_version", "1.1");
 
 define("configs_db_host", "localhost");
 define("configs_db_username", "root");
-define("configs_db_name", "ffdb");
-define("configs_db_password", "");
+define("configs_db_name", "ffpanel");
+define("configs_db_password", "1234");
 
 define("configs_mail_host", "mail..com");
 define("configs_mail_username", "admin@.com");

@@ -1,6 +1,6 @@
 <?php
 
-error_reporting(0);
+error_reporting(E_ALL);
 
 //die(var_dump($_SERVER));
 //die (phpinfo());
@@ -30,7 +30,6 @@ if (framework_is_debug_mode) {
 }
 
 Router::get("/", function () {
-    //Router::Route("login");
     View::Show("home", pageTypes::PAGE_TYPE_NORMAL);
 });
 
@@ -54,75 +53,16 @@ Router::Middleware("storage", true, function () {
 
 });
 
-if (false) {
-    Router::get("/register", function () {
+Router::middleware("logout", false,
+    function () {
+        $LGTSC = new SessionController();
+        $LGTSC->ResetSessionData();
+        $LGTSC = null;
         Router::Route("login");
-        return;
-        View::Show("register", pageTypes::PAGE_TYPE_NORMAL);
-    });
-
-    Router::get("/disclamier", function () {
-        View::Show("disclamier", pageTypes::PAGE_TYPE_NORMAL);
-    });
-
-    Router::get("/pay", function () {
-        View::Show("payment/pay", pageTypes::PAGE_TYPE_NORMAL);
-    });
-
-    Router::get("/success", function () {
-        View::Show("payment/success", pageTypes::PAGE_TYPE_NORMAL);
-    });
-
-    Router::get("/unsuccess", function () {
-        View::Show("payment/unsuccess", pageTypes::PAGE_TYPE_NORMAL);
-    });
-
-    Router::get("/policy", function () {
-        View::Show("../datapages/policy", pageTypes::PAGE_TYPE_NORMAL);
-    });
-
-    Router::get("/test", function () {
-        View::Show("test", pageTypes::PAGE_TYPE_NORMAL);
-    });
-
-    Router::get("/fatura", function () {
-        View::Show("user/funcs/dfatura", pageTypes::PAGE_TYPE_NORMAL);
-    });
-
-    Router::get("/response_bank", function () {
-        View::Show("response", pageTypes::PAGE_TYPE_NORMAL);
-    });
-
-
-    Router::middleware("dashboard", \AuthController\AuthController::isLogged(),
-        function () {
-            View::Show("user/dashboard", pageTypes::PAGE_TYPE_NORMAL);
-        }, function () {
-            Router::Route("login");
-        }
-    );
-
-    Router::middleware("admin", \AuthController\AuthController::isAdmin(),
-        function () {
-            chkmntc();
-            View::Show("admin/dashboard", pageTypes::PAGE_TYPE_NORMAL);
-        }, function () {
-            Router::Route("dashboard");
-        }
-    );
-
-    Router::middleware("logout", \AuthController\AuthController::isLogged(),
-        function () {
-            $LGTSC = new SessionController();
-            $LGTSC->ResetSessionData();
-            $LGTSC = null;
-            Router::Route("login");
-        }, function () {
-            Router::Route("login");
-        }
-    );
-}
-
+    }, function () {
+        Router::Route("login");
+    }
+);
 
 if (!Router::$isLoaded) {
     View::Show("404", pageTypes::PAGE_TYPE_ERROR);

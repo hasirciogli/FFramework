@@ -52,11 +52,11 @@ class SdsenDatabase
             PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
         );
         // Create a new PDO instanace
+
         try {
             $this->dbh = new PDO($dsn, $this->user, $this->pass, $options);
-        } // Catch any errors
-        catch (PDOException $e) {
-            $this->error = $e->getMessage();
+        } catch (Exception $e) {
+            die("Veritabanı bağlantı hatası");
         }
     }
 
@@ -139,10 +139,12 @@ class SdsenDatabase
 }
 
 
-class SessionsFromMysql {
+class SessionsFromMysql
+{
     private $db;
 
-    public function __construct(){
+    public function __construct()
+    {
         // Instantiate new Database object
         $this->db = new SdsenDatabase();
 
@@ -159,38 +161,40 @@ class SessionsFromMysql {
         // Start the session
         session_start();
     }
-    public function _open(){
+
+    public function _open()
+    {
         // If successful
-        if($this->db)
-        {
+        if ($this->db) {
             // Return True
             return true;
         }
         // Return False
         return false;
     }
-    public function _close(){
+
+    public function _close()
+    {
         // Close the database connection
         // If successful
-        if($this->db->close())
-        {
+        if ($this->db->close()) {
             // Return True
             return true;
         }
         // Return False
         return false;
     }
-    public function _read($id){
+
+    public function _read($id)
+    {
         // Set query
         $this->db->query('SELECT data FROM sessions WHERE id = :id');
         // Bind the Id
         $this->db->bind(':id', $id);
         // Attempt execution
         // If successful
-        if($this->db->execute())
-        {
-            if($this->db->rowCount() > 0)
-            {
+        if ($this->db->execute()) {
+            if ($this->db->rowCount() > 0) {
                 // Save returned row
                 $row = $this->db->single();
                 // Return the data
@@ -200,7 +204,9 @@ class SessionsFromMysql {
         // Return an empty string
         return '';
     }
-    public function _write($id, $data){
+
+    public function _write($id, $data)
+    {
         // Create time stamp
         $access = time();
         // Set query
@@ -211,30 +217,32 @@ class SessionsFromMysql {
         $this->db->bind(':data', $data);
         // Attempt Execution
         // If successful
-        if($this->db->execute())
-        {
+        if ($this->db->execute()) {
             // Return True
             return true;
         }
         // Return False
         return false;
     }
-    public function _destroy($id){
+
+    public function _destroy($id)
+    {
         // Set query
         $this->db->query('DELETE FROM sessions WHERE id = :id');
         // Bind data
         $this->db->bind(':id', $id);
         // Attempt execution
         // If successful
-        if($this->db->execute())
-        {
+        if ($this->db->execute()) {
             // Return True
             return true;
         }
         // Return False
         return false;
     }
-    public function _gc($max){
+
+    public function _gc($max)
+    {
         // Calculate what is to be deemed old
         $old = time() - $max;
         // Set query
@@ -242,8 +250,7 @@ class SessionsFromMysql {
         // Bind data
         $this->db->bind(':old', $old);
         // Attempt execution
-        if($this->db->execute())
-        {
+        if ($this->db->execute()) {
             // Return True
             return true;
         }
@@ -251,4 +258,5 @@ class SessionsFromMysql {
         return false;
     }
 }
+
 ?>

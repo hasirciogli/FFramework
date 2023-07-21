@@ -1,17 +1,11 @@
 <?php
 
-namespace DataLogger;
+namespace app\ffunctions;
 
-use DATABASE\Database;
-use DATABASE\FFDatabase;
+use app\database\FFDatabase;
+use app\assignments\datalogger\DATALOGGER_LOG_TYPE;
 
-enum DATALOGGER_LOG_TYPE: int
-{
-    case DEFAULT = 0;
-    case PAYMENT_GATES_LOG = 1;
-    case PAYMENT_REQUESTS_CREATE_LOG = 2;
-    case PAYMENT_REQUEST_PAY_LOG = 3;
-}
+
 
 class DataLogger
 {

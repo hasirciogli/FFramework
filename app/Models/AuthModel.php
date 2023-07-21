@@ -1,8 +1,8 @@
 <?php
 
-namespace AuthModel;
+namespace app\models;
 
-use DATABASE\FFDatabase;
+use app\database\FFDatabase;
 
 class AuthModel extends FFDatabase
 {

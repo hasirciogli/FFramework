@@ -16,7 +16,7 @@ switch ($ttk[1]) {
     case "js":
         {
             $attachment_location = "";
-            $attachment_location .= configs_site_rootfolder . "/app/Includex/js";
+            $attachment_location .= configs_site_rootfolder . "/app/includex/js";
             $attachment_location .= $switchUri;
 
             if (file_exists($attachment_location)) {
@@ -39,7 +39,7 @@ switch ($ttk[1]) {
     case "css":
         {
             $attachment_location = "";
-            $attachment_location .= configs_site_rootfolder . "/app/Includex/css";
+            $attachment_location .= configs_site_rootfolder . "/app/includex/css";
             $attachment_location .= $switchUri;
 
             if (file_exists($attachment_location)) {

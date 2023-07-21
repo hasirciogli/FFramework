@@ -8,9 +8,9 @@ define("configs_site_version", "1.1");
 
 
 define("configs_db_host", "localhost");
-define("configs_db_username", "root2");
-define("configs_db_name", "ffpanel");
-define("configs_db_password", "12342");
+define("configs_db_username", "root");
+define("configs_db_name", "");
+define("configs_db_password", "");
 
 define("configs_mail_host", "mail..com");
 define("configs_mail_username", "admin@.com");
@@ -20,8 +20,8 @@ define("configs_mail_port", 587);
 define("configs_mail_password", "");
 
 
-define("configs_host_domain", "hsrcpay.click");
-define("configs_host_ssl", "https");
+define("configs_host_domain", "fframework");
+define("configs_host_ssl", "http");
 
 
 define("configs_payment_backtr", "");

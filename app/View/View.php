@@ -1,46 +1,41 @@
 <?php
 
-namespace View;
+namespace app\view;
 
-use Router\Router;
+use app\assignments\view\PAGETYPES;
+use app\route\Router;
 
-enum pageTypes
-{
-    case PAGE_TYPE_NORMAL;
-    case PAGE_TYPE_ERROR;
-    case PAGE_TYPE_DERROR;
-}
+
 
 class View
 {
     public static function Show($load, $type)
     {
         switch ($type) {
-            case pageTypes::PAGE_TYPE_NORMAL:
-                if (file_exists(configs_site_rootfolder . "/app/View/Views/" . $load . ".php"))
-                    include(configs_site_rootfolder . "/app/View/Views/" . $load . ".php");
+            case PAGETYPES::PAGE_TYPE_NORMAL:
+                if (file_exists(configs_site_rootfolder . "/app/view/views/" . $load . ".hff.php"))
+                    include(configs_site_rootfolder . "/app/view/views/" . $load . ".hff.php");
                 else {
-                    self::Show("404", pageTypes::PAGE_TYPE_ERROR);
+                    self::Show("404", PAGETYPES::PAGE_TYPE_ERROR);
                 }
 
                 break;
 
-            case pageTypes::PAGE_TYPE_ERROR:
+            case PAGETYPES::PAGE_TYPE_ERROR:
 
-                if (file_exists(configs_site_rootfolder . "/app/Pages/" . $load . ".php"))
-                    include(configs_site_rootfolder . "/app/Pages/" . $load . ".php");
-                else {
-                    header("HTTP/1.0 404 Not Found");
-                }
+                header("HTTP/1.0 404 Not Found");
+
+                if (file_exists(configs_site_rootfolder . "/app/pages/" . $load . ".php"))
+                    include(configs_site_rootfolder . "/app/pages/" . $load . ".php");
 
                 break;
 
-            case pageTypes::PAGE_TYPE_DERROR:
-                include $_SERVER["DOCUMENT_ROOT"] . "/app/View/datapages/header.php";
+            case PAGETYPES::PAGE_TYPE_DERROR:
+                include $_SERVER["DOCUMENT_ROOT"] . "/app/view/datapages/header.php";
 
-                include($_SERVER["DOCUMENT_ROOT"] . "/app/FrameworkPages/" . $load . ".php");
+                include($_SERVER["DOCUMENT_ROOT"] . "/app/frameworkpages/" . $load . ".php");
 
-                include $_SERVER["DOCUMENT_ROOT"] . "/app/View/datapages/footer.php";
+                include $_SERVER["DOCUMENT_ROOT"] . "/app/view/datapages/footer.php";
                 break;
             default:
 

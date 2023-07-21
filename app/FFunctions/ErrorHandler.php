@@ -1,6 +1,6 @@
 <?php
 
-namespace ErrorHandler;
+namespace app\ffunctions;
 
 
 //$BaseErrorHandler = new ErrorHandler(); // error handled disabled bcs have an error in this page;

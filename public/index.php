@@ -1,69 +1,34 @@
 <?php
 
-error_reporting(E_ALL);
-
 //die(var_dump($_SERVER));
 //die (phpinfo());
-$cfg_way = "./../app/Configs/Config.php";
 
-if (!file_exists($cfg_way))
-    Router::Route("setup/index.php");
+require $_SERVER["DOCUMENT_ROOT"]. "/app/Kernel.php";
+
+use app\route\Router;
+use app\route\RouterGroup;
 
 
-require $_SERVER["DOCUMENT_ROOT"] . "/app/Kernel.php";
 
-use Router\Router;
-use View\View;
-use View\pageTypes;
-use UserController\UserController;
-use SessionController\SessionController;
+\app\database\FFDatabase::cfun()->init();
 
-$RouteSideUserController = new UserController();
+$router = Router::cfun();
 
-$sessionEx = new SessionsFromMysql();
-
-if (framework_is_debug_mode) {
-    Router::get("/debug_display_errors", function () {
-        View::Show("display_error", pageTypes::PAGE_TYPE_DERROR);
-        die();
-    });
-}
-
-Router::get("/", function () {
-    View::Show("home", pageTypes::PAGE_TYPE_NORMAL);
+$router->addRoute('GET', '/', function () {
+    \app\view\View::Show("home", \app\assignments\view\PAGETYPES::PAGE_TYPE_NORMAL);
 });
 
-Router::get("/remote_owner_page", function () {
-    //Router::Route("login");
-    View::Show("owner/home", pageTypes::PAGE_TYPE_NORMAL);
-});
-
-Router::get("/login", function () {
-    View::Show("login", pageTypes::PAGE_TYPE_NORMAL);
-});
-
-Router::get("/policy", function () {
-    View::Show("../datapages/policy", pageTypes::PAGE_TYPE_NORMAL);
-});
-
-
-Router::Middleware("storage", true, function () {
-    require configs_site_rootfolder . "/storage/storagemanager.php";
-}, function () {
+$router->addRoute('GET', '/login', function () {
+    \app\view\View::Show("login", \app\assignments\view\PAGETYPES::PAGE_TYPE_NORMAL);
 
 });
 
-Router::middleware("logout", false,
-    function () {
-        $LGTSC = new SessionController();
-        $LGTSC->ResetSessionData();
-        $LGTSC = null;
-        Router::Route("login");
-    }, function () {
-        Router::Route("login");
-    }
-);
+$router->addRoute('POST', '/login', function () {
+    header("Content-Type: Application/json");
 
-if (!Router::$isLoaded) {
-    View::Show("404", pageTypes::PAGE_TYPE_ERROR);
-}
+    header("Location: /login?err=Invalid Credentials...");
+});
+
+
+
+$router->handleRequest($_SERVER['REQUEST_METHOD'], $_SERVER['REQUEST_URI']);

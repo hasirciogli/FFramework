@@ -1,10 +1,8 @@
 <?php
 
-namespace UserController;
+namespace app\controllers;
 
-use Router\Router;
-use SessionController\SessionController;
-use UserModel\UserModel;
+use app\models\UserModel;
 
 class UserController extends UserModel
 {

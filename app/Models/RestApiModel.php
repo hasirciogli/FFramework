@@ -1,11 +1,11 @@
 <?php
 
-namespace RestApiModel;
+namespace app\models;
 
-use DATABASE\FFDatabase;
-use DataLogger\DataLogger;
-use DataLogger\DATALOGGER_LOG_TYPE;
-use FrameworkFunctions\FrameworkFunctions;
+use app\database\FFDatabase;
+use app\ffunctions\DataLogger;
+use app\assignments\datalogger\DATALOGGER_LOG_TYPE;
+use app\ffunctions\FrameworkFunctions;
 use PDO;
 use Router\Router;
 

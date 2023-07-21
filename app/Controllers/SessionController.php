@@ -1,6 +1,6 @@
 <?php
 
-namespace SessionController;
+namespace app\controllers;
 
 
 class SessionController

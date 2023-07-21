@@ -1,16 +1,12 @@
 <?php
 
-namespace FrameworkFunctions;
+namespace app\ffunctions;
 
+use app\assignments\frameworkfunctions\RANDOMSTRINGTYPES;
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-enum randomstringtypes{
-    case RANDOM_STRING_INT;
-    case RANDOM_STRING_STRING;
-    case RANDOM_STRING_CHAR;
-    case RANDOM_STRING_HIGH;
-}
+
 
 class FrameworkFunctions
 {
@@ -25,7 +21,7 @@ class FrameworkFunctions
         if($type != null && count($type) > 0){
             foreach ($type as $item){
                 switch ($item){
-                    case randomstringtypes::RANDOM_STRING_STRING:
+                    case RANDOMSTRINGTYPES::RANDOM_STRING_STRING:
                         $characters .= "abcdefghijklmnopqrstuvwxyz";
                         break;
 

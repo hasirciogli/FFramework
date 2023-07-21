@@ -1,7 +1,7 @@
 <?php
 
-include __DIR__ . "/../app/Configs/Config.php";
-include __DIR__ . "/../app/Database/Database.php";
+include __DIR__ . "/../app/Configs/config.php";
+include __DIR__ . "/../app/database/FFDatabase.php";
 
 //$_POST = json_decode(file_get_contents('php://input'), true);
 

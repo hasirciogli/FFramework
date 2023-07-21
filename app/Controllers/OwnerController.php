@@ -1,11 +1,11 @@
 <?php
 
-namespace GatesController;
+namespace app\controllers;
 
-use DATABASE\FFDatabase;
+use app\database\FFDatabase;
 use PDO;
 use Router\Router;
-use SessionController\SessionController;
+use app\controllers\SessionController;
 
 class OwnerController
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace FCrypter;
+namespace app\ffunctions;
 
 
 class FCrypter

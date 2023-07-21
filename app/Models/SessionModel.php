@@ -1,8 +1,8 @@
 <?php
 
-namespace SessionModel;
+namespace app\models;
 
-use \DATABASE\FFDatabase;
+use app\database\FFDatabase;
 
 class SessionModel extends FFDatabase
 {

@@ -15,7 +15,7 @@ class RouterGroup
 
     public function addRoute(string $method, string $path, callable|string $handler): void
     {
-        $path = rtrim($this->prefix, '/') . '/' . ltrim($path, '/');
+        $path = rtrim($this->prefix, '/') . (empty($path) ? '' : '/') . ltrim($path, '/');
         $this->routes[$method][$path] = $handler;
     }
 

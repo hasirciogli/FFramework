@@ -2,15 +2,35 @@
 
 namespace app\route;
 
+use app\assignments\view\PAGETYPES;
+use app\view\View;
+
 class Router
 {
     private array $routes = [];
     private array $namedRoutes = [];
     private array $params = [];
 
+    public string $ruri = "";
+
+    public function __construct()
+    {
+        $ures = $_SERVER["REQUEST_URI"];
+        $ifhaveUnlem    = str_contains($_SERVER["REQUEST_URI"], "?");
+
+        if ($ifhaveUnlem)
+            $ures = explode("?", $_SERVER["REQUEST_URI"])[0];
+
+
+        $this->ruri = $ures;
+    }
+
     // Öneri 5: Yönlendirme grupları için başlangıç yolu ekleyen yöntem
     public function group(string $prefix, callable $callback): void
     {
+        if(!str_starts_with($this->ruri, $prefix))
+            return;
+
         $group = new RouterGroup($prefix);
         call_user_func($callback, $group);
         $this->routes = array_merge_recursive($this->routes, $group->getRoutes());
@@ -92,14 +112,20 @@ class Router
 
     private function handleNotFound(): void
     {
+        http_response_code(404);
         // Handle 404 Not Found errors here
         header($_SERVER["SERVER_PROTOCOL"] . " 404 Not Found");
-        echo "404 Not Found";
+
+
+        View::Show("404", PAGETYPES::PAGE_TYPE_ERROR);
+
+
+        //echo "404 Not Found";
     }
 
     public function getParam(string $paramName): ?string
     {
-        return $this->params[$paramName] ?? null;
+        return ($rurl = $this->params[$paramName] ?? null) ? urldecode($rurl) : $rurl;
     }
 
     // Öneri 2: İsimlendirilmiş rotaları eklemek ve döndürmek için yeni bir yöntem
@@ -142,5 +168,7 @@ class Router
             header("Refresh: ".$waitSecond.", ".$url);
         else
             header("Location: ".$url);
+
+        die();
     }
 }

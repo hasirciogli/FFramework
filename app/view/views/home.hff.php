@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -5,9 +6,10 @@
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
+    <?php echo configs_site_favicon; ?>
     <link rel="stylesheet" href="./storage/css/index.css">
 
-    <title>FFramework</title>
+    <title>FFramework V2.6</title>
 
 </head>
 
@@ -17,7 +19,7 @@
 <div class="container mx-auto h-screen">
     <div class="w-full h-screen flex-col flex items-center justify-center">
         <div class="w-full md:w-[800px]">
-            <h1 class="ffonts-exo2 text-3xl font-normal mb-2 ml-1">FFramework PHP-8.2.0</h1>
+            <h1 class="ffonts-exo2 text-3xl font-normal mb-2 ml-1">FFramework for PHP-8.1.0</h1>
         </div>
 
         <div class="w-full md:w-[800px] bg-red-500 h-[300px] md:rounded border-0 flex flex-col shadow-md shadow-slate-400">

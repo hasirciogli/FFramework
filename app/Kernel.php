@@ -59,3 +59,7 @@ spl_autoload_register(function ($class) {
     }
 
 });
+
+
+set_error_handler(['app\\ffunctions\\ErrorHandler', 'handleErrors']);
+set_exception_handler(['app\\ffunctions\\ErrorHandler', 'handleExceptions']);

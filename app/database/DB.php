@@ -41,6 +41,8 @@ class DB
     }
 
 
+
+
     public function use(string $dbName): DB{
         if(!$this->connection)
             $this->checkDB();
@@ -48,6 +50,13 @@ class DB
         $this->tempSql = "USE ". $dbName.";";
 
         return $this;
+    }
+
+    public function lastInsertId(): int {
+        if(!$this->connection)
+            $this->checkDB();
+
+        return $this->connection->lastInsertId() ?? -1;
     }
 
     public function select(string $tableName): DB {
@@ -91,7 +100,7 @@ class DB
     public function where(string $key, bool $binaryMode = false): DB{
 
         if(str_contains($this->tempSql, "WHERE"))
-            $this->tempSql .= " AND $key=:$key";
+            $this->tempSql .= " AND" . ($binaryMode ? " BINARY" : "") ." $key=:$key";
         else
             $this->tempSql .= " WHERE". ($binaryMode ? " BINARY" : "") ." $key=:$key";
 
@@ -114,9 +123,9 @@ class DB
     public function run(): false | DB {
         $fdb = $this->checkDB();
 
-        var_dump($this->tempBParams);
+        //var_dump($this->tempSql);
 
-        $this->tV  = $fdb->connection->prepare($this->tempSql.";");
+        $this->tV  = $fdb->connection->prepare($this->tempSql);
         $this->tV2 = $this->tV->execute($this->tempBParams);
 
         return $this->tV2 ? $this : false;

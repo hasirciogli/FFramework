@@ -14,6 +14,13 @@ $router->addRoute('GET', '/', function () {
     \app\view\View::Show("home", \app\assignments\view\PAGETYPES::PAGE_TYPE_NORMAL);
 });
 
+$router->addRoute('GET', '/test', function () {
+   
+    exec('wmic memorychip get capacity', $totalMemory);
+    print_r(exec("merhaba dostum"));
+
+});
+
 $router->group( '/hello', function ($routerGroup) use ($router) {
 
     $routerGroup->addRoute("GET", "", function () use ($router) {

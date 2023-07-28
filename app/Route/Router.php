@@ -166,9 +166,9 @@ class Router
     {
         if($waitSecond > 0)
             header("Refresh: ".$waitSecond.", ".$url);
-        else
+        else {
             header("Location: ".$url);
-
-        die();
+            die();
+        }
     }
 }

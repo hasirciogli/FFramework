@@ -123,8 +123,6 @@ class DB
     public function run(): false | DB {
         $fdb = $this->checkDB();
 
-        //var_dump($this->tempSql);
-
         $this->tV  = $fdb->connection->prepare($this->tempSql);
         $this->tV2 = $this->tV->execute($this->tempBParams);
 

@@ -1,0 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=Climate+Crisis&family=Exo+2:ital,wght@0,100;0,200;1,100&family=Golos+Text:wght@400;500;600;700;800;900&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;0,1000;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900;1,1000&family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Quicksand:wght@300;400;500;600;700&display=swap');
+/*font-family: 'Poppins', sans-serif;*/
+
+html, body {
+    padding: 0;
+    margin: 0;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #c2c2c2;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    transition: 0.3s;
+    background: #141e36;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #2756c9;
+}
+
+.ffonts-exo2 {
+    font-family: 'Exo 2';
+}
+
+.ffonts-nunito {
+    font-family: 'Nunito', sans-serif;
+}
+
+.ffonts-opensans {
+    font-family: 'Open Sans', sans-serif;
+}
+
+.ffonts-golos {
+    font-family: 'Golos Text', sans-serif;
+}

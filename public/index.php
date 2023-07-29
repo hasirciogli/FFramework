@@ -16,8 +16,8 @@ $router->addRoute('GET', '/', function () {
 
 $router->addRoute('GET', '/test', function () {
    
-    exec('wmic memorychip get capacity', $totalMemory);
-    print_r(exec("merhaba dostum"));
+    //exec('', $totalMemory);
+    //print_r($totalMemory);
 
 });
 
@@ -38,6 +38,39 @@ $router->group( '/hello', function ($routerGroup) use ($router) {
     $routerGroup->addRoute("GET", "bro/:name/comein", function () use ($router) {
         echo "Hello bro " . $router->getParam("name"). " Welcome Back! come in >";
     });
+});
+
+$router->addRoute("GET", "/storage/*", function () use ($router) {
+    if(str_contains($router->ruri, "../"))
+    {return;}
+
+    $fway = configs_site_rootfolder . "/storage/". str_replace("/storage", "", $router->ruri);
+
+
+    if(!file_exists($fway))
+    {
+        echo "Böyle bir dosya yok...";
+        Router::Route( !empty($_GET["BackUri"]) ? $_GET["BackUri"] : "/u" , 3);
+        die();
+    }
+
+    $fname = explode("/",$fway);
+    $fname = end($fname);
+        
+    //Define header information
+    header('Content-Description: File Transfer');
+    header('Content-Type: application/octet-stream');
+    header("Cache-Control: no-cache, must-revalidate");
+    header("Expires: 0");
+    //header('Content-Disposition: attachment; filename="'. $fname .'"');
+    header('Content-Length: ' . filesize($fway));
+    header('Pragma: public');
+
+    //Clear system output buffer
+    flush();
+
+    //Read the size of the file
+    readfile($fway);
 });
 
 $router->handleRequest($_SERVER['REQUEST_METHOD'], $_SERVER['REQUEST_URI']);

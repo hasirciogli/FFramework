@@ -88,7 +88,9 @@ class Router
         }
 
         for ($i = 0; $i < count($pathParts); $i++) {
-            if (strpos($routeParts[$i], ':') === 0) {
+            if ($routeParts[$i] === '*') { // Yıldız (*) karakterine denk gelen herhangi bir yol için true döndür.
+                return true;
+            } elseif (strpos($routeParts[$i], ':') === 0) {
                 $paramName = ltrim($routeParts[$i], ':');
                 $this->params[$paramName] = $pathParts[$i];
             } elseif ($pathParts[$i] !== $routeParts[$i]) {

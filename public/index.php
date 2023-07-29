@@ -1,5 +1,7 @@
 <?php
 
+
+
 //die(var_dump($_SERVER));
 //die (phpinfo());
 
@@ -7,6 +9,7 @@ require $_SERVER["DOCUMENT_ROOT"]. "/app/Kernel.php";
 
 use app\route\Router;
 use app\route\RouterGroup;
+use app\api\Api;
 
 $router = Router::cfun();
 
@@ -72,4 +75,10 @@ $router->addRoute("GET", "/storage/*", function () use ($router) {
     readfile($fway);
 });
 
-$router->handleRequest($_SERVER['REQUEST_METHOD'], $_SERVER['REQUEST_URI']);
+$router->group("/api", function (RouterGroup $routerGroup) use ($router) {
+    //require __DIR__ . "/../api/api.php";
+
+    $a = Api::cfun()->use($router, $routerGroup);
+});
+
+$router->handleRequest();

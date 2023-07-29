@@ -11,18 +11,26 @@ class Router
     private array $namedRoutes = [];
     private array $params = [];
 
+
+    public string $method = "";
     public string $ruri = "";
 
     public function __construct()
     {
-        $ures = $_SERVER["REQUEST_URI"];
-        $ifhaveUnlem    = str_contains($_SERVER["REQUEST_URI"], "?");
+        $this->method = $_SERVER['REQUEST_METHOD'];
+
+        $ures           = $_SERVER["REQUEST_URI"];
+        $ifhaveUnlem    = str_contains($ures, "?");
 
         if ($ifhaveUnlem)
             $ures = explode("?", $_SERVER["REQUEST_URI"])[0];
 
+        $this->ruri = strlen($ures) > 1 ? rtrim($ures, '/') : $ures;
 
-        $this->ruri = $ures;
+
+
+        if(str_ends_with($ures, "/") && strlen($this->ruri) > 1)
+            Router::Route($this->ruri);
     }
 
     // Öneri 5: Yönlendirme grupları için başlangıç yolu ekleyen yöntem
@@ -55,10 +63,29 @@ class Router
         $middleware($this);
     }
 
-    public function handleRequest(string $method, string $path): void
+    public function handleRequest(): void
     {
-        foreach ($this->routes[$method] as $routePath => $handler) {
-            if ($this->matchRoute($path, $routePath)) {
+        //die($this->ruri);
+        foreach ($this->routes[$this->method] ?? [] as $routePath => $handler) {
+            if ($this->matchRoute($this->ruri, $routePath)) {
+                if (is_callable($handler)) {
+                    $handler();
+                } else {
+                    // Öneri 3: İsimlendirilmiş rotaları desteklemek için işleyici adlarını döndürmek
+                    if (strpos($handler, '@') === false) {
+                        $handler = $this->getHandlerByName($handler);
+                    }
+
+                    // Handle non-callable handlers (e.g., controller and action)
+                    list($controller, $action) = explode('@', $handler);
+                    $this->callControllerAction($controller, $action);
+                }
+                return;
+            }
+        }
+
+        foreach ($this->routes["*"] ?? [] as $routePath => $handler) {
+            if ($this->matchRoute($this->ruri, $routePath)) {
                 if (is_callable($handler)) {
                     $handler();
                 } else {
@@ -83,12 +110,12 @@ class Router
         $pathParts = explode('/', explode("?", $path)[0]);
         $routeParts = explode('/', $routePath);
 
-        if (count($pathParts) !== count($routeParts)) {
+        if (count($pathParts) !== count($routeParts) && end($routeParts) != "*") {
             return false;
         }
 
         for ($i = 0; $i < count($pathParts); $i++) {
-            if ($routeParts[$i] === '*') { // Yıldız (*) karakterine denk gelen herhangi bir yol için true döndür.
+            if ($routeParts[$i] == "*") { // Yıldız (*) karakterine denk gelen herhangi bir yol için true döndür.
                 return true;
             } elseif (strpos($routeParts[$i], ':') === 0) {
                 $paramName = ltrim($routeParts[$i], ':');
@@ -114,6 +141,7 @@ class Router
 
     private function handleNotFound(): void
     {
+        //echo $this->ruri;
         http_response_code(404);
         // Handle 404 Not Found errors here
         header($_SERVER["SERVER_PROTOCOL"] . " 404 Not Found");

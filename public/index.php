@@ -16,8 +16,7 @@ $router->addRoute('GET', '/', function () {
 
 $router->addRoute('GET', '/test', function () {
    
-    //exec('', $totalMemory);
-    //print_r($totalMemory);
+    echo "Merhaba";
 
 });
 
@@ -62,7 +61,7 @@ $router->addRoute("GET", "/storage/*", function () use ($router) {
     header('Content-Type: application/octet-stream');
     header("Cache-Control: no-cache, must-revalidate");
     header("Expires: 0");
-    //header('Content-Disposition: attachment; filename="'. $fname .'"');
+    header('Content-Disposition: attachment; filename="'. $fname .'"');
     header('Content-Length: ' . filesize($fway));
     header('Pragma: public');
 

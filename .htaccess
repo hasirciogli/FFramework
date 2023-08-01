@@ -4,20 +4,5 @@ RewriteEngine on
 RewriteCond %{HTTPS} ON
 RewriteRule (.*) http://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
-# Ignore requests to the "storage" directory
-RewriteRule ^storage(/|$) - [L]
-
-# Remove trailing slash from non-API requests if it's not a file or directory
-RewriteCond %{REQUEST_URI} !api/
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^(.+)/$ /$1 [L,R=301]
-
-RewriteCond %{REQUEST_URI} !/api
 RewriteBase /
 RewriteRule ^(.*)$ public/index.php [L,QSA]
-
-# Rewrite API requests to api/api.php
-RewriteCond %{REQUEST_URI} ^/api
-RewriteBase /
-RewriteRule ^(.*)$ api/api.php [L,QSA]

@@ -21,6 +21,15 @@ class View
 
                 break;
 
+            case PAGETYPES::PAGE_TYPE_LDP:
+                if (file_exists(configs_site_rootfolder . "/local-development-panel/" . $load . ".hff.php"))
+                    include(configs_site_rootfolder . "/local-development-panel/" . $load . ".hff.php");
+                else {
+                    self::Show("404", PAGETYPES::PAGE_TYPE_ERROR);
+                }
+
+                break;
+
             case PAGETYPES::PAGE_TYPE_ERROR:
 
                 header("HTTP/1.0 404 Not Found");

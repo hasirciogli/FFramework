@@ -10,7 +10,12 @@ class Api {
         $this->var = $var;
     }
 
-    public function use(Router $router, RouterGroup $routerGroup = null){
+    /**
+     * @param Router $router
+     * @param RouterGroup $routerGroup
+     * @return void
+     */
+    public function use(Router $router, RouterGroup $routerGroup = null): void{
 
         $routerGroup->addRoute("GET", "", function () use ($router) {
             echo "Hello World";

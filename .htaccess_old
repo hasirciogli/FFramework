@@ -1,22 +1,23 @@
-DirectoryIndex public/index.php
-<IfModule mod_rewrite.c>
-    <IfModule mod_negotiation.c>
-        Options -MultiViews
-    </IfModule>
+RewriteEngine on
 
-    RewriteEngine On
+# Redirect HTTPS requests to HTTP
+RewriteCond %{HTTPS} ON
+RewriteRule (.*) http://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
-    # Redirect Trailing Slashes If Not A Folder...
-    RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteCond %{REQUEST_URI} (.+)/$
-    RewriteRule ^ %1 [L,R=301]
+# Ignore requests to the "storage" directory
+RewriteRule ^storage(/|$) - [L]
 
-    # Handle Front Controller...
-    RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteRule ^ public/index.php [L]
+# Remove trailing slash from non-API requests if it's not a file or directory
+RewriteCond %{REQUEST_URI} !api/
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.+)/$ /$1 [L,R=301]
 
-    # Handle Authorization Header
-    RewriteCond %{HTTP:Authorization} .
-    RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
-</IfModule>
+RewriteCond %{REQUEST_URI} !/api
+RewriteBase /
+RewriteRule ^(.*)$ public/index.php [L,QSA]
+
+# Rewrite API requests to api/api.php
+RewriteCond %{REQUEST_URI} ^/api
+RewriteBase /
+RewriteRule ^(.*)$ api/api.php [L,QSA]

@@ -1,8 +1,4 @@
 RewriteEngine on
 
-# Redirect HTTPS requests to HTTP
-RewriteCond %{HTTPS} ON
-RewriteRule (.*) http://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
-
 RewriteBase /
 RewriteRule ^(.*)$ public/index.php [L,QSA]

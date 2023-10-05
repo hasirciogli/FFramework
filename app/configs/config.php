@@ -34,7 +34,6 @@ define("configs_api_prefix", "api");
 
 
 define("framework_is_debug_mode", true);
-define("framework_is_development_mode", true);
 
 
 define("configs_site_jquery", '<script src="https://cdn.jsdelivr.net/npm/jquery@3.7.0/dist/jquery.min.js"></script>');

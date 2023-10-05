@@ -282,11 +282,6 @@ class Router
             Api::cfun()->use($this, $routerGroup);
         });
 
-
-        if (framework_is_development_mode) {
-            $this->group('/ldp', "app\\controllers\\LocalDevelopmentPanelController@use");
-        }
-
         //die($this->ruri);
         foreach ($this->routes[$this->method] ?? [] as $routePath => $handler) {
             if ($this->matchRoute($this->ruri, $routePath)) {
